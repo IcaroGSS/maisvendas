@@ -23,13 +23,20 @@ export function CardPlano({ plano }: { plano: Plano }) {
         <p className="text-sm text-suave">{plano.descricao}</p>
       </header>
 
-      <p className="flex flex-col">
-        <span className="text-xs font-semibold tracking-wide text-suave uppercase">a partir de</span>
-        <span className="text-4xl font-extrabold tracking-tight text-white">
-          <span className="mr-1 text-xl align-top">R$</span>
-          {plano.preco}
-        </span>
-      </p>
+      {/^\d/.test(plano.preco) ? (
+        <p className="flex flex-col">
+          <span className="text-xs font-semibold tracking-wide text-suave uppercase">a partir de</span>
+          <span className="text-4xl font-extrabold tracking-tight text-white">
+            <span className="mr-1 text-xl align-top">R$</span>
+            {plano.preco}
+          </span>
+        </p>
+      ) : (
+        <p className="flex flex-col">
+          <span className="text-xs font-semibold tracking-wide text-suave uppercase">Valor</span>
+          <span className="text-3xl font-extrabold tracking-tight text-white">{plano.preco}</span>
+        </p>
+      )}
 
       <ul className="flex flex-col gap-3">
         {plano.itens.map((item) => (

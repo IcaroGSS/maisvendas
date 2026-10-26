@@ -6,7 +6,7 @@ import { Revelar } from "@/components/Revelar";
 import { CabecalhoPagina } from "@/components/Secoes";
 
 export const metadata: Metadata = {
-  title: "Planos e preços",
+  title: "Planos",
   description:
     "Planos de criação de site para micro empresas: Essencial, Profissional e Loja/Cardápio. Peça uma prévia grátis antes de decidir.",
   alternates: { canonical: "/planos" },
@@ -18,7 +18,7 @@ export default function Planos() {
       <CabecalhoPagina
         selo="Planos"
         titulo="Um plano para cada momento do seu negócio"
-        subtitulo="Valores a partir de. O preço final depende do que o seu site vai ter — e você vê a prévia antes de pagar qualquer coisa."
+        subtitulo="O valor é combinado com você pelo Direct, de acordo com o que o seu site vai ter — e você vê a prévia antes de pagar qualquer coisa."
       />
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6" aria-label="Planos">

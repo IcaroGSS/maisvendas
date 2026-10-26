@@ -11,8 +11,8 @@
  *  - Depois de salvar, o site atualiza sozinho (no `npm run dev`)
  *    ou no próximo deploy da Vercel.
  *
- *  ⚠️ PREENCHA: procure por "EDITE AQUI" — são os valores que
- *  ainda estão com marcador (prazo da prévia e preços).
+ *  ⚠️ PREENCHA: procure por "EDITE AQUI" — é o valor que
+ *  ainda está com marcador (prazo da prévia).
  * ============================================================
  */
 
@@ -51,11 +51,15 @@ export const site = {
 } as const;
 
 /* ------------------------------------------------------------
- * Planos — preços "a partir de"
+ * Planos
  * ---------------------------------------------------------- */
 export type Plano = {
   nome: string;
-  /** EDITE AQUI — só o número, ex.: "497" ou "1.200". */
+  /**
+   * Texto do preço. Hoje: "A combinar".
+   * Se um dia quiser mostrar valor, coloque só o número (ex.: "497")
+   * e o card mostra "a partir de R$ 497" automaticamente.
+   */
   preco: string;
   descricao: string;
   itens: string[];
@@ -66,7 +70,7 @@ export type Plano = {
 export const planos: Plano[] = [
   {
     nome: "Essencial",
-    preco: "XX",
+    preco: "A combinar",
     descricao: "Site de uma página, direto ao ponto.",
     itens: [
       "Site de uma página",
@@ -79,7 +83,7 @@ export const planos: Plano[] = [
   },
   {
     nome: "Profissional",
-    preco: "XX",
+    preco: "A combinar",
     descricao: "Várias seções ou páginas para mostrar tudo o que você faz.",
     itens: [
       "Várias seções ou páginas",
@@ -93,7 +97,7 @@ export const planos: Plano[] = [
   },
   {
     nome: "Loja/Cardápio",
-    preco: "XX",
+    preco: "A combinar",
     descricao: "Catálogo de produtos ou cardápio digital.",
     itens: [
       "Catálogo de produtos ou cardápio digital",

@@ -18,7 +18,7 @@ Tudo fica em `src/config/site.ts`:
 - `site.prazoPrevia` — prazo da prévia grátis (ex.: `"3 dias"`).
 - `site.corDestaque` — cor dos botões (ex.: `"#22C55E"`).
 - `site.url` — endereço final do site (usado no Google e no sitemap).
-- `planos` — nome, `preco` (só o número), itens e `destaque: true` em um deles.
+- `planos` — nome, `preco` (hoje `"A combinar"`; se colocar só um número, ex. `"497"`, vira "a partir de R$ 497"), itens e `destaque: true` em um deles.
 - `nichos` — cada item vira uma página `/nichos/[slug]`.
 - `faq` — perguntas e respostas da página Dúvidas.
 - `depoimentos` — troque `ativo: false` para `true` e preencha `itens` quando tiver depoimentos reais.
