@@ -10,9 +10,6 @@
  *  - Não apague as vírgulas no fim das linhas.
  *  - Depois de salvar, o site atualiza sozinho (no `npm run dev`)
  *    ou no próximo deploy da Vercel.
- *
- *  ⚠️ PREENCHA: procure por "EDITE AQUI" — é o valor que
- *  ainda está com marcador (prazo da prévia).
  * ============================================================
  */
 
@@ -40,8 +37,8 @@ export const site = {
     direct: "https://ig.me/m/maisvendas.web",
   },
 
-  /** EDITE AQUI — prazo da prévia grátis. Ex.: "3 dias", "48 horas". */
-  prazoPrevia: "X dias",
+  /** Prazo da prévia grátis. Ex.: "3 dias", "48 horas". */
+  prazoPrevia: "3 dias",
 
   /** Cor de destaque (só em botões e pontos de atenção). Ex.: "#22C55E" (verde) ou "#8B5CF6" (roxo). */
   corDestaque: "#22C55E",
