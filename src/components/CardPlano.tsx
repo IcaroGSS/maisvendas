@@ -1,8 +1,25 @@
-import { site, type Plano } from "@/config/site";
+import { planos, type Plano } from "@/config/site";
 import { Botao } from "./Botao";
 import { Icone } from "./Icone";
+import { Revelar } from "./Revelar";
+
+/** Os cards de todos os planos do arquivo de configuração, lado a lado no desktop. */
+export function ListaPlanos() {
+  return (
+    <ul className="mx-auto grid max-w-4xl items-stretch gap-6 pt-3 md:grid-cols-2">
+      {planos.map((p, i) => (
+        <Revelar como="li" key={p.nome} atraso={i * 0.08}>
+          <CardPlano plano={p} />
+        </Revelar>
+      ))}
+    </ul>
+  );
+}
 
 export function CardPlano({ plano }: { plano: Plano }) {
+  const temValor = /^\d/.test(plano.preco);
+  const externo = plano.botao.href.startsWith("http");
+
   return (
     <article
       className={`relative flex h-full flex-col gap-6 rounded-3xl p-6 sm:p-7 ${
@@ -23,20 +40,13 @@ export function CardPlano({ plano }: { plano: Plano }) {
         <p className="text-sm text-suave">{plano.descricao}</p>
       </header>
 
-      {/^\d/.test(plano.preco) ? (
-        <p className="flex flex-col">
-          <span className="text-xs font-semibold tracking-wide text-suave uppercase">a partir de</span>
-          <span className="text-4xl font-extrabold tracking-tight text-white">
-            <span className="mr-1 text-xl align-top">R$</span>
-            {plano.preco}
-          </span>
-        </p>
-      ) : (
-        <p className="flex flex-col">
-          <span className="text-xs font-semibold tracking-wide text-suave uppercase">Valor</span>
-          <span className="text-3xl font-extrabold tracking-tight text-white">{plano.preco}</span>
-        </p>
-      )}
+      <p className="flex flex-col gap-1">
+        <span className="text-4xl font-extrabold tracking-tight text-white">
+          {temValor ? <span className="mr-1 align-top text-xl">R$</span> : null}
+          {plano.preco}
+        </span>
+        <span className="text-sm font-semibold text-suave">{plano.detalhePreco}</span>
+      </p>
 
       <ul className="flex flex-col gap-3">
         {plano.itens.map((item) => (
@@ -48,14 +58,14 @@ export function CardPlano({ plano }: { plano: Plano }) {
       </ul>
 
       <Botao
-        href={site.instagram.direct}
-        externo
-        icone="instagram"
+        href={plano.botao.href}
+        externo={externo}
+        icone={externo ? "instagram" : undefined}
+        iconeFim={externo ? undefined : "seta"}
         variante={plano.destaque ? "primario" : "secundario"}
         className="mt-auto w-full"
-        ariaLabel={`Quero o plano ${plano.nome}`}
       >
-        Quero este plano
+        {plano.botao.texto}
       </Botao>
     </article>
   );

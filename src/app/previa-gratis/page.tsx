@@ -7,13 +7,13 @@ import { CabecalhoPagina } from "@/components/Secoes";
 
 export const metadata: Metadata = {
   title: "Prévia grátis do seu site",
-  description: `Peça uma prévia grátis do site do seu negócio. Você recebe em até ${site.prazoPrevia} e só paga se gostar. Atendimento pelo Direct do Instagram.`,
+  description: `Peça uma prévia grátis do site do seu negócio. Você recebe em até ${site.prazoPrevia} e só paga se gostar. Atendimento pelo Direct do Instagram ou pelo WhatsApp.`,
   alternates: { canonical: "/previa-gratis" },
 };
 
 const passos: { icone: NomeIcone; titulo: string; texto: string }[] = [
   { icone: "enviar", titulo: "Você manda os dados", texto: "Nome do negócio, ramo e, se quiser, seu Instagram e uma cor." },
-  { icone: "olho", titulo: `Recebe a prévia em até ${site.prazoPrevia}`, texto: "Você vê como o seu site pode ficar, direto pelo Direct." },
+  { icone: "olho", titulo: `Recebe a prévia em até ${site.prazoPrevia}`, texto: "Você vê como o seu site pode ficar, pelo Direct ou pelo WhatsApp." },
   { icone: "check", titulo: "Só fecha se gostar", texto: "Gostou? A gente segue. Não gostou? Você não paga nada." },
 ];
 
@@ -23,7 +23,7 @@ export default function PreviaGratis() {
       <CabecalhoPagina
         selo="Prévia grátis ✦"
         titulo="Veja seu site antes de pagar qualquer coisa"
-        subtitulo="Preencha em 30 segundos. A mensagem fica pronta para você só colar e enviar no Direct."
+        subtitulo="Preencha em 30 segundos. A mensagem fica pronta para você enviar pelo Direct ou pelo WhatsApp."
       />
 
       <section className="mx-auto max-w-5xl px-4 sm:px-6" aria-label="Como funciona a prévia">

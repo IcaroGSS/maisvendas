@@ -16,7 +16,7 @@ const etapas: { icone: NomeIcone; titulo: string; texto: string }[] = [
   {
     icone: "enviar",
     titulo: "Pedido da prévia",
-    texto: "Você me manda pelo Direct o nome do negócio, o ramo e o que mais quiser contar. Leva menos de um minuto.",
+    texto: "Você me manda pelo Direct ou pelo WhatsApp o nome do negócio, o ramo e o que mais quiser contar. Leva menos de um minuto.",
   },
   {
     icone: "olho",
@@ -25,8 +25,8 @@ const etapas: { icone: NomeIcone; titulo: string; texto: string }[] = [
   },
   {
     icone: "ajustes",
-    titulo: "Ajustes",
-    texto: "Gostou? A gente ajusta cores, textos, fotos e seções até ficar com a cara do seu negócio.",
+    titulo: "Você fecha e a gente ajusta",
+    texto: `Gostou? Você fecha o site completo por R$ ${site.precoSite} e a gente ajusta cores, textos, fotos e seções até ficar com a cara do seu negócio.`,
   },
   {
     icone: "foguete",
@@ -39,7 +39,7 @@ const inclusos: { icone: NomeIcone; titulo: string; texto: string }[] = [
   { icone: "globo", titulo: "Domínio", texto: "O endereço do seu site na internet, configurado para você." },
   { icone: "nuvem", titulo: "Hospedagem", texto: "Seu site no ar, rápido e seguro, sem você se preocupar." },
   { icone: "ajustes", titulo: "Ajustes", texto: "Mudanças de texto, foto ou preço quando você precisar." },
-  { icone: "suporte", titulo: "Suporte", texto: "Atendimento direto pelo Direct do Instagram, sem robô." },
+  { icone: "suporte", titulo: "Suporte", texto: "Atendimento direto pelo Direct do Instagram ou pelo WhatsApp, sem robô." },
 ];
 
 export default function ComoFunciona() {

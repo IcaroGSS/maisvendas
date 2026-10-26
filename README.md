@@ -16,9 +16,11 @@ Abra http://localhost:3000.
 Tudo fica em `src/config/site.ts`:
 
 - `site.prazoPrevia` — prazo da prévia grátis (ex.: `"3 dias"`).
+- `site.precoSite` — preço do site completo, pago ao fechar (só o número, ex.: `"450"`).
+- `site.whatsapp` — número do WhatsApp (como aparece escrito e no formato `55` + DDD + número).
 - `site.corDestaque` — cor dos botões (ex.: `"#22C55E"`).
 - `site.url` — endereço final do site (usado no Google e no sitemap).
-- `planos` — nome, `preco` (hoje `"A combinar"`; se colocar só um número, ex. `"497"`, vira "a partir de R$ 497"), itens e `destaque: true` em um deles.
+- `planos` — nome, `preco` (número vira "R$ 450"; texto como `"Grátis"` aparece igual), `detalhePreco`, itens, botão e `destaque: true` em um deles.
 - `nichos` — cada item vira uma página `/nichos/[slug]`.
 - `faq` — perguntas e respostas da página Dúvidas.
 - `depoimentos` — troque `ativo: false` para `true` e preencha `itens` quando tiver depoimentos reais.

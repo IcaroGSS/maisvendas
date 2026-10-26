@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { faq } from "@/config/site";
 import { BotaoInstagram } from "@/components/BotaoInstagram";
+import { BotaoWhatsApp } from "@/components/BotaoWhatsApp";
 import { FAQ } from "@/components/FAQ";
 import { Revelar } from "@/components/Revelar";
 import { CabecalhoPagina } from "@/components/Secoes";
@@ -35,10 +36,13 @@ export default function Duvidas() {
       <section className="mx-auto mt-20 max-w-2xl px-4 text-center sm:px-6">
         <Revelar className="cartao flex flex-col items-center gap-5 px-6 py-10">
           <h2 className="text-2xl font-extrabold tracking-tight text-balance text-white sm:text-3xl">
-            Ainda com dúvida? Me chama no Instagram
+            Ainda com dúvida? Me chama
           </h2>
-          <p className="text-suave">Respondo pessoalmente pelo Direct.</p>
-          <BotaoInstagram tamanho="lg">Chamar no Direct</BotaoInstagram>
+          <p className="text-suave">Respondo pessoalmente, pelo Direct do Instagram ou pelo WhatsApp.</p>
+          <div className="flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
+            <BotaoInstagram tamanho="lg">Chamar no Direct</BotaoInstagram>
+            <BotaoWhatsApp tamanho="lg" texto="Olá! Tenho uma dúvida sobre o site da MaisVendas." />
+          </div>
         </Revelar>
       </section>
     </>

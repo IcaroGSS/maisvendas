@@ -3,6 +3,7 @@ import Link from "next/link";
 import { nichos, site } from "@/config/site";
 import { Botao } from "@/components/Botao";
 import { CardNicho } from "@/components/CardNicho";
+import { ListaPlanos } from "@/components/CardPlano";
 import { GaleriaModelos } from "@/components/GaleriaModelos";
 import { Icone, type NomeIcone } from "@/components/Icone";
 import { MockupEsqueleto } from "@/components/mockup/MockupEsqueleto";
@@ -59,7 +60,7 @@ export default function Inicio() {
             </div>
 
             <ul className="flex flex-wrap gap-x-3 gap-y-1.5 text-sm text-suave">
-              {["Sem compromisso", "Atendimento direto pelo Direct", "Feito para micro empresas"].map((t, i) => (
+              {["Sem compromisso", "Atendimento pelo Direct ou WhatsApp", "Feito para micro empresas"].map((t, i) => (
                 <li key={t} className="flex items-center gap-3">
                   {i > 0 ? <span aria-hidden="true" className="hidden text-white/25 sm:inline">·</span> : null}
                   <span className="inline-flex items-center gap-1.5">
@@ -135,6 +136,18 @@ export default function Inicio() {
             </Link>
           </Revelar>
         </ul>
+      </section>
+
+      {/* ---------- Planos ---------- */}
+      <section className="mx-auto mt-28 max-w-6xl px-4 sm:px-6">
+        <TituloSecao
+          selo="Planos"
+          titulo="Primeiro você vê. Depois decide."
+          texto={`A prévia é grátis. Gostou? O site completo sai por R$ ${site.precoSite}, pago só quando você fechar.`}
+        />
+        <div className="mt-10">
+          <ListaPlanos />
+        </div>
       </section>
 
       <Depoimentos />

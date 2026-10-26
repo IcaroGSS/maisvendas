@@ -33,12 +33,22 @@ export const site = {
     usuario: "maisvendas.web",
     /** Link do perfil (usado em "Siga @maisvendas.web"). */
     perfil: "https://instagram.com/maisvendas.web",
-    /** Link do Direct (TODOS os botões de contato usam este link). */
+    /** Link do Direct (os botões principais de contato usam este link). */
     direct: "https://ig.me/m/maisvendas.web",
+  },
+
+  whatsapp: {
+    /** Como o número aparece escrito no site. */
+    numero: "(11) 96636-4910",
+    /** Só números, com 55 (Brasil) + DDD. Usado para montar o link wa.me. */
+    internacional: "5511966364910",
   },
 
   /** Prazo da prévia grátis. Ex.: "3 dias", "48 horas". */
   prazoPrevia: "3 dias",
+
+  /** Preço do site completo, pago só quando o cliente fecha. Só o número. */
+  precoSite: "450",
 
   /** Cor de destaque (só em botões e pontos de atenção). Ex.: "#22C55E" (verde) ou "#8B5CF6" (roxo). */
   corDestaque: "#22C55E",
@@ -52,58 +62,50 @@ export const site = {
  * ---------------------------------------------------------- */
 export type Plano = {
   nome: string;
-  /**
-   * Texto do preço. Hoje: "A combinar".
-   * Se um dia quiser mostrar valor, coloque só o número (ex.: "497")
-   * e o card mostra "a partir de R$ 497" automaticamente.
-   */
+  /** Só o número (ex.: "450") aparece como "R$ 450". Texto (ex.: "Grátis") aparece como está. */
   preco: string;
+  /** Linha pequena embaixo do preço. */
+  detalhePreco: string;
   descricao: string;
   itens: string[];
   /** true = card com borda cromada e selo "Mais escolhido". Deixe só um como true. */
   destaque: boolean;
+  /** Botão do card. Link começando com "http" abre em nova aba. */
+  botao: { texto: string; href: string };
 };
 
 export const planos: Plano[] = [
   {
-    nome: "Essencial",
-    preco: "A combinar",
-    descricao: "Site de uma página, direto ao ponto.",
+    nome: "Prévia",
+    preco: "Grátis",
+    detalhePreco: "sem compromisso",
+    descricao: "Veja como o site do seu negócio vai ficar antes de pagar qualquer coisa.",
     itens: [
-      "Site de uma página",
-      "Seções: sobre, serviços e localização",
-      "Botões que levam para o seu Instagram",
-      "Funciona perfeito no celular",
-      "Domínio e hospedagem inclusos",
+      "Prévia do site do seu negócio",
+      `Pronta em até ${site.prazoPrevia}`,
+      "Com as cores e o estilo que você preferir",
+      "Enviada pelo Direct ou pelo WhatsApp",
+      "Não gostou? Não paga nada",
     ],
     destaque: false,
+    botao: { texto: "Quero minha prévia grátis", href: "/previa-gratis" },
   },
   {
-    nome: "Profissional",
-    preco: "A combinar",
-    descricao: "Várias seções ou páginas para mostrar tudo o que você faz.",
+    nome: "Site completo",
+    preco: site.precoSite,
+    detalhePreco: "pago só quando você fechar",
+    descricao: "Gostou da prévia? Seu site completo, pronto e no ar.",
     itens: [
-      "Várias seções ou páginas",
-      "Galeria de fotos dos seus trabalhos",
-      "Mapa, horários e formas de contato",
+      "Tudo da prévia, finalizado com as suas informações",
+      "Serviços, galeria de fotos, localização e contato",
+      "Catálogo de produtos ou cardápio, se precisar",
+      "Botões que levam direto para o seu Instagram e WhatsApp",
       "Otimizado para aparecer no Google",
       "Domínio e hospedagem inclusos",
       "Ajustes depois da entrega",
     ],
     destaque: true,
-  },
-  {
-    nome: "Loja/Cardápio",
-    preco: "A combinar",
-    descricao: "Catálogo de produtos ou cardápio digital.",
-    itens: [
-      "Catálogo de produtos ou cardápio digital",
-      "Categorias, fotos e preços",
-      "Pedido direto pelo Direct do Instagram",
-      "Fácil de atualizar",
-      "Domínio e hospedagem inclusos",
-    ],
-    destaque: false,
+    botao: { texto: "Quero fechar meu site", href: site.instagram.direct },
   },
 ];
 
@@ -280,22 +282,21 @@ export const faq: Pergunta[] = [
   },
   {
     pergunta: "Como funciona a prévia grátis?",
-    resposta: `Você me manda pelo Direct o nome do seu negócio, o ramo e, se quiser, seu Instagram e uma cor preferida. Em até ${site.prazoPrevia} eu te envio uma prévia de como o seu site pode ficar. Se gostar, a gente fecha. Se não gostar, tudo bem — você não paga nada.`,
+    resposta: `Você me manda pelo Direct ou pelo WhatsApp o nome do seu negócio, o ramo e, se quiser, seu Instagram e uma cor preferida. Em até ${site.prazoPrevia} eu te envio uma prévia de como o seu site pode ficar. Se gostar, a gente fecha. Se não gostar, tudo bem — você não paga nada.`,
   },
   {
     pergunta: "Quanto tempo demora para o site ficar pronto?",
     resposta:
-      "Depende do plano e de quanto conteúdo o site vai ter. Depois que você aprova a prévia e me envia as informações, eu te passo um prazo certinho pelo Direct antes de começar.",
+      "Depende de quanto conteúdo o site vai ter. Depois que você aprova a prévia e me envia as informações, eu te passo um prazo certinho antes de começar.",
   },
   {
-    pergunta: "Tem mensalidade?",
-    resposta:
-      "Os valores de cada plano, incluindo domínio e hospedagem, são combinados com você antes de fechar, sem letras miúdas e sem surpresa. Me chama no Direct que eu explico certinho para o seu caso.",
+    pergunta: "Quanto custa? Tem mensalidade?",
+    resposta: `A prévia é grátis. Se você gostar e decidir fechar, o site completo sai por R$ ${site.precoSite}, pagos só nesse momento. Qualquer outro custo é explicado antes de você fechar, sem letras miúdas e sem surpresa. Me chama no Direct ou no WhatsApp ${site.whatsapp.numero} que eu explico certinho.`,
   },
   {
     pergunta: "Consigo mudar o site depois?",
     resposta:
-      "Sim. O site não fica engessado: se precisar trocar um preço, uma foto ou um horário, é só me chamar no Direct.",
+      "Sim. O site não fica engessado: se precisar trocar um preço, uma foto ou um horário, é só me chamar no Direct ou no WhatsApp.",
   },
   {
     pergunta: "Preciso entender de tecnologia?",

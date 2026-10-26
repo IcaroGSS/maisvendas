@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { nichos, site } from "@/config/site";
+import { linkWhatsApp } from "./BotaoWhatsApp";
 import { Icone } from "./Icone";
 
 const CORES = [
@@ -40,7 +41,7 @@ function copiarSincrono(texto: string) {
   }
 }
 
-type Status = "inicial" | "copiado" | "falhou";
+type Status = "inicial" | "copiado" | "falhou" | "whatsapp";
 
 export function FormularioPrevia() {
   const [nome, setNome] = useState("");
@@ -75,14 +76,28 @@ export function FormularioPrevia() {
     return `Olá! Quero minha prévia grátis. Negócio: ${nome.trim()}. Ramo: ${nomeRamo}. Instagram: ${arroba ? `@${arroba}` : "não informado"}. Cor preferida: ${corTexto}.`;
   };
 
-  const enviar = (e: FormEvent) => {
-    e.preventDefault();
+  const validar = () => {
     if (!nome.trim()) {
       setErro("Escreva o nome do seu negócio.");
       campoNome.current?.focus();
-      return;
+      return false;
     }
     setErro("");
+    return true;
+  };
+
+  // WhatsApp aceita a mensagem já escrita no link, então não precisa copiar.
+  const enviarWhatsApp = () => {
+    if (!validar()) return;
+    const texto = montarMensagem();
+    setMensagem(texto);
+    setStatus("whatsapp");
+    window.open(linkWhatsApp(texto), "_blank", "noopener,noreferrer");
+  };
+
+  const enviar = (e: FormEvent) => {
+    e.preventDefault();
+    if (!validar()) return;
     const texto = montarMensagem();
     setMensagem(texto);
     setCopiouDeNovo(false);
@@ -282,8 +297,17 @@ export function FormularioPrevia() {
           <Icone nome="instagram" className="size-5" strokeWidth={2.2} />
           Enviar pelo Direct
         </button>
+        <button
+          type="button"
+          onClick={enviarWhatsApp}
+          className="borda-cromada -mt-2 inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-full bg-white/[0.04] px-6 text-base font-bold text-white transition hover:bg-white/[0.08]"
+        >
+          <Icone nome="whatsapp" className="size-5" strokeWidth={2} />
+          Enviar pelo WhatsApp
+        </button>
         <p className="-mt-3 text-center text-xs leading-relaxed text-suave">
-          A mensagem é copiada e o Direct do @{site.instagram.usuario} abre em uma nova aba. Nenhum dado fica salvo neste site.
+          Pelo Direct, a mensagem é copiada para você colar. Pelo WhatsApp, no {site.whatsapp.numero}, ela já vai escrita. Nenhum dado fica
+          salvo neste site.
         </p>
       </form>
 
@@ -309,6 +333,29 @@ export function FormularioPrevia() {
                 O Direct não abriu?{" "}
                 <a href={site.instagram.direct} target="_blank" rel="noopener noreferrer" className="font-bold text-white underline underline-offset-4">
                   Abrir o Direct do @{site.instagram.usuario}
+                  <span className="sr-only"> (abre em nova aba)</span>
+                </a>
+              </p>
+            </motion.div>
+          ) : status === "whatsapp" ? (
+            <motion.div
+              key="whatsapp"
+              initial={{ opacity: 0, y: 12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex flex-col gap-3 rounded-[1.5rem] border-2 border-destaque bg-[color-mix(in_oklab,var(--destaque)_14%,#0b0d10)] p-5 sm:p-6"
+            >
+              <p className="flex items-center gap-3 text-xl font-extrabold text-white">
+                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-destaque text-fundo">
+                  <Icone nome="check" className="size-5" strokeWidth={3} />
+                </span>
+                Mensagem pronta! É só tocar em enviar no WhatsApp
+              </p>
+              <p className="rounded-2xl bg-black/30 p-4 text-sm leading-relaxed text-[#d6d9df]">{mensagem}</p>
+              <p className="text-sm text-suave">
+                O WhatsApp não abriu?{" "}
+                <a href={linkWhatsApp(mensagem)} target="_blank" rel="noopener noreferrer" className="font-bold text-white underline underline-offset-4">
+                  Abrir conversa com {site.whatsapp.numero}
                   <span className="sr-only"> (abre em nova aba)</span>
                 </a>
               </p>

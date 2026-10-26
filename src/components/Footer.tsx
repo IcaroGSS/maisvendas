@@ -2,6 +2,7 @@ import Link from "next/link";
 import { menuRodape, site } from "@/config/site";
 import { Logo } from "./Logo";
 import { BotaoInstagram } from "./BotaoInstagram";
+import { BotaoWhatsApp } from "./BotaoWhatsApp";
 
 export function Footer() {
   return (
@@ -15,7 +16,10 @@ export function Footer() {
           <Logo tamanho="lg" />
           <p className="texto-cromado text-2xl font-extrabold tracking-tight">{site.slogan}</p>
           <div className="flex flex-col items-start gap-3">
-            <BotaoInstagram>Fale comigo no Instagram</BotaoInstagram>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <BotaoInstagram>Fale comigo no Instagram</BotaoInstagram>
+              <BotaoWhatsApp />
+            </div>
             <a
               href={site.instagram.perfil}
               target="_blank"
